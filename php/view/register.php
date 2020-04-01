@@ -1,17 +1,18 @@
 <?php
-    include("../config/connect.php");
-    include("../src/register.php");
+    //include("../config/connect.php");
+    require_once "config.php";
+    // include("../src/register.php");
 
     //dd($_POST);
 
-    if(!empty($_POST)){
-        $sfd = setFormData();
-    }
+    // if(!empty($_POST)){
+    //     $sfd = setFormData();
+    // }
     
 ?>
 <?php
 // Include config file
-require_once "register.php";
+// require_once "register.php";
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -25,9 +26,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username_err = "Please enter a username.";
     } else{
         // Prepare a select statement
-        $sql = "SELECT id FROM users WHERE username = ?";
+        $sql = "SELECT id FROM user WHERE `firstname` = ?";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($con, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
             
@@ -71,36 +72,48 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $confirm_password_err = "Password did not match.";
         }
     }
-    
+
     // Check input errors before inserting in database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
         
+
+        
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-         
-        if($stmt = mysqli_prepare($link, $sql)){
+        $sql = "INSERT INTO user ( firstname,`e-mailadres`, `password`, middlename, lastname, birthdate) VALUES (?, ?, '?','?','?','2020-1-1')";
+      
+        if($stmt = mysqli_prepare($con, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
-            
+
+            //echo("username:".$username);
+            //echo("password:".$password);
+           
             // Set parameters
-            $param_username = $username;
+            $param_username = trim($_POST["username"]);;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            
+       
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
                 header("location: login.php");
             } else{
+                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
                 echo "Something went wrong. Please try again later.";
+                exit();
             }
+
+            
 
             // Close statement
             mysqli_stmt_close($stmt);
         }
+
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($con);
 }
 ?>
  
