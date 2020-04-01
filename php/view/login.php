@@ -11,20 +11,20 @@
 require_once "config.php";
 // session_start();
 // If form submitted, insert values into the database.
-if (isset($_POST['username'])){
+if (isset($_POST['firstname'])){
         // removes backslashes
- $username = stripslashes($_REQUEST['username']);
+ $firstname = stripslashes($_REQUEST['firstname']);
         //escapes special characters in a string
- $username = mysqli_real_escape_string($con,$username);
+ $firstname = mysqli_real_escape_string($con,$firstname);
  $password = stripslashes($_REQUEST['password']);
  $password = mysqli_real_escape_string($con,$password);
  //Checking is user existing in the database or not
-        $query = "SELECT * FROM user WHERE username='$firstname'
+        $query = "SELECT * FROM user WHERE firstname='?';
 -- and password='".md5($password)."'";
  $result = mysqli_query($con,$query) or die(mysql_error());
  $rows = mysqli_num_rows($result);
         if($rows==1){
-     $_SESSION['username'] = $username;
+     $_SESSION['firstname'] = $firstname;
             // Redirect user to index.php
      header("Location: index.html");
          }else{

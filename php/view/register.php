@@ -15,25 +15,25 @@
 // require_once "register.php";
  
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$firstname = $password = $confirm_password = "";
+$firstname_err = $password_err = $confirm_password_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter a username.";
+    if(empty(trim($_POST["firstname"]))){
+        $firstname_err = "Please enter a firstname.";
     } else{
         // Prepare a select statement
         $sql = "SELECT id FROM user WHERE `firstname` = ?";
         
         if($stmt = mysqli_prepare($con, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            mysqli_stmt_bind_param($stmt, "s", $param_firstname);
             
             // Set parameters
-            $param_username = trim($_POST["username"]);
+            $param_firstname = trim($_POST["firstname"]);
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -41,9 +41,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $username_err = "This username is already taken.";
+                    $firstname_err = "This firstname is already taken.";
                 } else{
-                    $username = trim($_POST["username"]);
+                    $firstname = trim($_POST["firstname"]);
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -74,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
+    if(empty($firstname_err) && empty($password_err) && empty($confirm_password_err)){
         
 
         
@@ -83,13 +83,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       
         if($stmt = mysqli_prepare($con, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password);
+            mysqli_stmt_bind_param($stmt, "ss", $param_firstname, $param_password);
 
             //echo("username:".$username);
             //echo("password:".$password);
            
             // Set parameters
-            $param_username = trim($_POST["username"]);;
+            $param_firstname = trim($_POST["firstname"]);;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             
        
@@ -133,10 +133,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <h2>Sign Up</h2>
         <p>Please fill this form to create an account.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                <label>Username</label>
-                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                <span class="help-block"><?php echo $username_err; ?></span>
+            <div class="form-group <?php echo (!empty($firstname_err)) ? 'has-error' : ''; ?>">
+                <label>firstname</label>
+                <input type="text" name="firstname" class="form-control" value="<?php echo $firstname; ?>">
+                <span class="help-block"><?php echo $firstname_err; ?></span>
             </div>    
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
