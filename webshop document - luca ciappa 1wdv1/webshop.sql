@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 31 mrt 2020 om 09:08
+-- Gegenereerd op: 27 mrt 2020 om 21:02
 -- Serverversie: 10.4.6-MariaDB
 -- PHP-versie: 7.3.9
 
@@ -94,13 +94,6 @@ CREATE TABLE `customer` (
   `newsletter_subscription` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Gegevens worden geëxporteerd voor tabel `customer`
---
-
-INSERT INTO `customer` (`id`, `gender`, `firstname`, `middlename`, `lastname`, `street`, `housenumber`, `housenumber_addon`, `zippcode`, `city`, `phone`, `e-mailadres`, `password`, `newsletter_subscription`) VALUES
-(2, 1, 'Jordan', '', 'Bellford', 'diezesstraat', 22, '', '1234a', 'utrecht', '06123456789', 'test@gmail.com', '123', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -132,8 +125,7 @@ INSERT INTO `product` (`id`, `name`, `description`, `category_id`, `price`, `col
 (7, 'llahra', 'De lampenkap van textiel geeft een zacht en decoratief licht.\r\n<br><br>\r\nLichtbron wordt apart verkocht. IKEA adviseert de led-lamp E27 globevorm opaalwit.\r\n<br><b>\r\nGebruik een opalen lichtbron als je een gewone lampenkap of lamp hebt en je een gelijkmatig, gespreid licht wilt.\r\n<br><br>\r\nVoorzien van trekschakelaar.\r\n<br><br>\r\nDit product is CE-gecertificeerd.\r\n\r\nGoed te completeren met andere lampen uit dezelfde serie.', 3, '85.00', 'wit', 900, 1),
 (8, 'struisvogel-lamp', 'De lampenkap van textiel geeft een zacht en decoratief licht.\r\n<br><br>\r\nLichtbron wordt apart verkocht. IKEA adviseert de led-lamp E27 globevorm opaalwit.\r\n<br><b>\r\nGebruik een opalen lichtbron als je een gewone lampenkap of lamp hebt en je een gelijkmatig, gespreid licht wilt.\r\n<br><br>\r\nVoorzien van trekschakelaar.\r\n<br><br>\r\nDit product is CE-gecertificeerd.\r\n\r\nGoed te completeren met andere lampen uit dezelfde serie.', 3, '69.00', 'wit', 850, 1),
 (9, 'giraf-lamp', 'De lampenkap van textiel geeft een zacht en decoratief licht.\r\n<br><br>\r\nLichtbron wordt apart verkocht. IKEA adviseert de led-lamp E27 globevorm opaalwit.\r\n<br><b>\r\nGebruik een opalen lichtbron als je een gewone lampenkap of lamp hebt en je een gelijkmatig, gespreid licht wilt.\r\n<br><br>\r\nVoorzien van trekschakelaar.\r\n<br><br>\r\nDit product is CE-gecertificeerd.\r\n\r\nGoed te completeren met andere lampen uit dezelfde serie.', 2, '39.95', 'wit', 300, 1),
-(10, 'luca', '', 0, '233.00', 'red', 532, 1),
-(11, 'dsfsdffds', 'ds', 0, '25.00', 'red', 350, 1);
+(10, 'luca', '', 0, '233.00', 'red', 532, 1);
 
 -- --------------------------------------------------------
 
@@ -164,54 +156,6 @@ INSERT INTO `product_image` (`id`, `product_id`, `image`, `active`) VALUES
 (9, 4, 'lampje.jpg', 1),
 (10, 3, 'llahra.png', 1),
 (11, 3, 'struisvogel.jpg', 1);
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `tbl_order`
---
-
-CREATE TABLE `tbl_order` (
-  `id` int(100) NOT NULL,
-  `customer_id` int(10) NOT NULL,
-  `date` datetime NOT NULL,
-  `street` varchar(70) NOT NULL,
-  `housenumber` int(4) NOT NULL,
-  `housenumber_addon` varchar(4) NOT NULL,
-  `zipcode` varchar(8) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `country` varchar(50) NOT NULL,
-  `paid` tinyint(1) NOT NULL,
-  `delivery` enum('ophalen','bezorgen_thuis','bezorgen_anders','') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `tbl_order`
---
-
-INSERT INTO `tbl_order` (`id`, `customer_id`, `date`, `street`, `housenumber`, `housenumber_addon`, `zipcode`, `city`, `country`, `paid`, `delivery`) VALUES
-(0, 1, '2020-03-30 00:00:00', 'ander aflever adres straatnaam', 123, 'bis', '1234ab', 'utrecht', 'nederland', 1, '');
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `tbl_order_detail`
---
-
-CREATE TABLE `tbl_order_detail` (
-  `id` int(50) NOT NULL,
-  `order_id` int(100) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `amount` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Gegevens worden geëxporteerd voor tabel `tbl_order_detail`
---
-
-INSERT INTO `tbl_order_detail` (`id`, `order_id`, `product_id`, `amount`) VALUES
-(1, 1, 5, 3),
-(2, 1, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -273,18 +217,6 @@ ALTER TABLE `product_image`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexen voor tabel `tbl_order`
---
-ALTER TABLE `tbl_order`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexen voor tabel `tbl_order_detail`
---
-ALTER TABLE `tbl_order_detail`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexen voor tabel `user`
 --
 ALTER TABLE `user`
@@ -311,25 +243,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT voor een tabel `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT voor een tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT voor een tabel `product_image`
 --
 ALTER TABLE `product_image`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT voor een tabel `tbl_order_detail`
---
-ALTER TABLE `tbl_order_detail`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `user`
