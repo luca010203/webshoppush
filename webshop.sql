@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 31 mrt 2020 om 09:08
+-- Gegenereerd op: 03 apr 2020 om 15:26
 -- Serverversie: 10.4.6-MariaDB
 -- PHP-versie: 7.3.9
 
@@ -43,10 +43,7 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 (2, 'h', ''),
 (5, 'fg', 'GBpBt7uSgwV@g)aLbn'),
 (6, 'ssssssss', '04d1c0bd7deef97af6ddd973292d090b'),
-(8, 'gdfg', '04d1c0bd7deef97af6ddd973292d090b'),
-(9, 'dfg', '04d1c0bd7deef97af6ddd973292d090b'),
-(10, 'l', '2db95e8e1a9267b7a1188556b2013b33'),
-(12, 'lol', '9cdfb439c7876e703e307864c9167a15');
+(8, 'gdfg', '04d1c0bd7deef97af6ddd973292d090b');
 
 -- --------------------------------------------------------
 
@@ -132,8 +129,7 @@ INSERT INTO `product` (`id`, `name`, `description`, `category_id`, `price`, `col
 (7, 'llahra', 'De lampenkap van textiel geeft een zacht en decoratief licht.\r\n<br><br>\r\nLichtbron wordt apart verkocht. IKEA adviseert de led-lamp E27 globevorm opaalwit.\r\n<br><b>\r\nGebruik een opalen lichtbron als je een gewone lampenkap of lamp hebt en je een gelijkmatig, gespreid licht wilt.\r\n<br><br>\r\nVoorzien van trekschakelaar.\r\n<br><br>\r\nDit product is CE-gecertificeerd.\r\n\r\nGoed te completeren met andere lampen uit dezelfde serie.', 3, '85.00', 'wit', 900, 1),
 (8, 'struisvogel-lamp', 'De lampenkap van textiel geeft een zacht en decoratief licht.\r\n<br><br>\r\nLichtbron wordt apart verkocht. IKEA adviseert de led-lamp E27 globevorm opaalwit.\r\n<br><b>\r\nGebruik een opalen lichtbron als je een gewone lampenkap of lamp hebt en je een gelijkmatig, gespreid licht wilt.\r\n<br><br>\r\nVoorzien van trekschakelaar.\r\n<br><br>\r\nDit product is CE-gecertificeerd.\r\n\r\nGoed te completeren met andere lampen uit dezelfde serie.', 3, '69.00', 'wit', 850, 1),
 (9, 'giraf-lamp', 'De lampenkap van textiel geeft een zacht en decoratief licht.\r\n<br><br>\r\nLichtbron wordt apart verkocht. IKEA adviseert de led-lamp E27 globevorm opaalwit.\r\n<br><b>\r\nGebruik een opalen lichtbron als je een gewone lampenkap of lamp hebt en je een gelijkmatig, gespreid licht wilt.\r\n<br><br>\r\nVoorzien van trekschakelaar.\r\n<br><br>\r\nDit product is CE-gecertificeerd.\r\n\r\nGoed te completeren met andere lampen uit dezelfde serie.', 2, '39.95', 'wit', 300, 1),
-(10, 'luca', '', 0, '233.00', 'red', 532, 1),
-(11, 'dsfsdffds', 'ds', 0, '25.00', 'red', 350, 1);
+(12, 'good', 'sdfsdf', 0, '199.00', 'red', 199, 1);
 
 -- --------------------------------------------------------
 
@@ -163,7 +159,12 @@ INSERT INTO `product_image` (`id`, `product_id`, `image`, `active`) VALUES
 (8, 4, 'jesse.png', 1),
 (9, 4, 'lampje.jpg', 1),
 (10, 3, 'llahra.png', 1),
-(11, 3, 'struisvogel.jpg', 1);
+(11, 3, 'struisvogel.jpg', 1),
+(12, 11, 'img/Naamloos-1.jpg', 1),
+(13, 11, 'img/Naamloos-1.jpg', 1),
+(14, 12, 'img/Naamloos-1.jpg', 1),
+(15, 12, 'img/Naamloos-1.jpg', 1),
+(16, 12, 'img/cases.png', 1);
 
 -- --------------------------------------------------------
 
@@ -216,6 +217,36 @@ INSERT INTO `tbl_order_detail` (`id`, `order_id`, `product_id`, `amount`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `tbl_product`
+--
+
+CREATE TABLE `tbl_product` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `price` double(10,2) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `tbl_product`
+--
+
+INSERT INTO `tbl_product` (`id`, `name`, `image`, `price`) VALUES
+(1, 'arstid', 'arstid.jpg', 100.00),
+(2, 'buitenlamp', 'buitenlamp.jpg', 299.00),
+(3, 'buitenlamp2', 'buitenlamp2.jpg', 125.00),
+(4, 'gans', 'gans.jpg', 150.00),
+(5, 'giraf', 'giraf.jpg', 50.00),
+(6, 'giraf2', 'giraf2.jpg', 75.00),
+(7, 'hektar', 'hektar.jpg', 130.00),
+(8, 'jesse', 'jesse.png', 80.00),
+(9, 'lampje', 'lampje.jpg', 40.00),
+(10, 'llahra', 'llahra.png', 65.00),
+(11, 'struisvogel', 'struisvogel.jpg', 90.00);
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `user`
 --
 
@@ -235,7 +266,10 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `firstname`, `middlename`, `lastname`, `birthdate`, `e-mailadres`, `password`) VALUES
 (1, 'luca', '', 'ciappa', '2003-02-01', '532732@student.glu.n', '426d8166a1cf619f353c16a24972c10c'),
-(9, 'jan', 'van', 'os', '1986-05-02', 'jos@glu.nl', '827ccb0eea8a706c4c34a16891f84e7b');
+(9, 'jan', 'van', 'os', '1986-05-02', 'jos@glu.nl', '827ccb0eea8a706c4c34a16891f84e7b'),
+(11, 'first', 'middle', 'last', '2020-01-01', 'test', '$2y$10$.j4pnLOoBq6Uf.I2/8yXv.TeMLE4BGO3XYSBxy3b4XaeC7Y1/NYqC'),
+(12, 'first', 'middle', 'last', '2020-01-01', 'test2', '$2y$10$jRGROADiy0bTIGkEgnRPp.aQkNtWPY7OkSPu2DzOuF/pJbwMuZe9q'),
+(38, 'mister', '?', '?', '2020-01-01', '', '123456');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -285,6 +319,12 @@ ALTER TABLE `tbl_order_detail`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexen voor tabel `tbl_product`
+--
+ALTER TABLE `tbl_product`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexen voor tabel `user`
 --
 ALTER TABLE `user`
@@ -317,13 +357,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT voor een tabel `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT voor een tabel `product_image`
 --
 ALTER TABLE `product_image`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT voor een tabel `tbl_order_detail`
@@ -332,10 +372,16 @@ ALTER TABLE `tbl_order_detail`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT voor een tabel `tbl_product`
+--
+ALTER TABLE `tbl_product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT voor een tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
