@@ -31,7 +31,7 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">klanten Details</h2>
-                        <a href="user_add.php" class="btn btn-success pull-right">Voeg een nieuwe klant toe</a>
+                        <a href="admin/users/user_add.php" class="btn btn-success pull-right">Voeg een nieuwe klant toe</a>
                     </div>
                     <?php
                     // Include config file
