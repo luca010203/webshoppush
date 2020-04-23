@@ -31,8 +31,9 @@
                 <div class="col-md-12">
                     <div class="page-header clearfix">
                         <h2 class="pull-left">Products Details</h2>
-                        <a href="product_toevoegen.php" class="btn btn-success pull-right">Voeg een nieuw product toe</a>
-                        <a href="product_image.php" class="btn btn-success pull-right">voeg een foto toe</a>
+                        <a href="product_toevoegen.php" class="btn btn-success pull-right">Voeg nieuw product toe</a>
+                        <a href="product_image.php" class="btn btn-success pull-right">voeg foto toe</a>
+                        <a href="../adminpage.php" class="btn btn-success pull-right">admin page</a>
                     </div>
                     <?php
                     // Include config file

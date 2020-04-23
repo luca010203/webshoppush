@@ -67,9 +67,7 @@ if(isset($_GET["action"]))
 			<br />
 			<br />
 			<a href="view/login.php" class="btn btn-success pull-right">login</a>
-			<a href="view/admin/customers/index.php" class="btn btn-success pull-right">customers</a>
-			<a href="view/admin/products/index.php" class="btn btn-success pull-right">products</a>
-			<a href="view/admin/users/index.php" class="btn btn-success pull-right">users</a>
+			<a href="view/admin/adminpage.php" class="btn btn-success pull-right">admin page</a>
 			<a href="view/login.php" class="btn btn-success pull-right">logout</a>
 			<br />
 			<br />

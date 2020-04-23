@@ -97,8 +97,8 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     <form action="<?php echo htmlspecialchars(basename($_SERVER['REQUEST_URI'])); ?>" method="post">
                         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                             <label>username</label>
-                            <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
-                            <span class="help-block"><?php echo $username_err;?></span>
+                            <input type="text" name="username" class="form-control" value="username">
+                            <span class="help-block"><?php echo $firstname_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                             <label>password</label>
